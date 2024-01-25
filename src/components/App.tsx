@@ -59,21 +59,11 @@ const App: React.FC = () => {
     },
   })
 
+
   return (
     <div>
       <Router>
-        <Link to='/'></Link>
-        <Link to='/create'>
-
-          <MantineProvider>
-            <div className='formContainer'>
-              <Button id={active > 0 ? 'displayNone' : 'firstBtn'}>Начать</Button>
-            </div>
-          </MantineProvider>
-
-
-
-        </Link>
+        <Link to='/'> </Link>
         <Routes>
           <Route
             path='/'

@@ -1,6 +1,4 @@
-import { MantineProvider } from '@mantine/core'
-import { FC, ReactElement } from 'react'
-import { Button } from 'react-bootstrap'
+import { FC } from 'react'
 import { FaCircleCheck } from 'react-icons/fa6'
 import { Link } from 'react-router-dom'
 

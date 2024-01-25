@@ -5,12 +5,15 @@ import { FaUserCircle } from 'react-icons/fa'
 import { FaFolder } from 'react-icons/fa'
 import InputMask from 'react-input-mask'
 import { FormData } from '../types/data'
+import { Link } from 'react-router-dom'
+
 
 // const isValidPhoneNumber = (phoneNumber:string) => /^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/.test(phoneNumber);
 
 interface IUserHeader {
   form: ReturnType<typeof useForm<FormData>>
 }
+
 
 export const UserHeader: FC<IUserHeader> = ({ form }) => {
   return (
@@ -48,6 +51,15 @@ export const UserHeader: FC<IUserHeader> = ({ form }) => {
             {...form.getInputProps('phone')}
           />
         </div>
+
+
+        <Link to='/create'>
+    <button className='firstBtn'>Начать</button>
+  </Link>
+
+
+
+
       </div>
     </MantineProvider>
   )
