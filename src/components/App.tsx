@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
+import React, { FC, useState } from 'react'
 import './App.css'
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
-import { UserHeader } from './UserHeader'
-import { Create } from './Create'
+import { UserHeader } from './firstPage/UserHeader'
+import { Create } from './form/Create'
 import { FormData } from '../types/data'
 import { useForm } from '@mantine/form'
-import { Button, MantineProvider } from '@mantine/core'
 
 const initialValues: FormData = {
   phone: '',
@@ -20,7 +19,7 @@ const initialValues: FormData = {
   about: '',
 }
 
-const App: React.FC = () => {
+const App: FC = () => {
   const [active, setActive] = useState<number>(0)
 
   const form = useForm<FormData>({
@@ -30,7 +29,9 @@ const App: React.FC = () => {
       if (active > 0) {
         return {
           email: /^\S+@\S+$/.test(values.email) ? null : 'Invalid email',
-          phone: /^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/.test(values.phone) ? null : 'Invalid phone number',
+          phone: /^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/.test(values.phone)
+            ? null
+            : 'Invalid phone number',
         }
       }
       if (active === 1) {
@@ -58,7 +59,6 @@ const App: React.FC = () => {
       return {}
     },
   })
-
 
   return (
     <div>

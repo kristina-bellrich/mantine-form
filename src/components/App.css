@@ -16,6 +16,7 @@
 }
 .nameOfInput {
   font-weight: 500;
+  margin-top: 60px;
 }
 #btnNext {
   background-color: #5558fa;
@@ -48,8 +49,10 @@
 .modal-main {
   position: fixed;
   background: white;
+  border: #999aeb85 solid 2px;
   width: 330px;
   height: auto;
+  padding: 15px 10px;
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);

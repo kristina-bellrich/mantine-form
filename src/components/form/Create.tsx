@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import './App.css'
+import React, { FC, useState } from 'react'
 import '@mantine/core/styles.css'
 import {
   Checkbox,
@@ -11,17 +10,16 @@ import {
   Button,
   Group,
   TextInput,
-  Code,
 } from '@mantine/core'
 import { useForm } from '@mantine/form'
 import { MdDelete } from 'react-icons/md'
-import Modal from './Modal'
-import ModalError from './ModalError'
-import { FormData } from '../types/data'
+import Modal from '../modal/Modal'
+import ModalError from '../modal/ModalError'
+import { FormData } from '../../types/data'
 import { Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { sendData } from '../redux/dataSlice'
-import { useAppDispatch } from '../redux/store'
+import { useSelector } from 'react-redux'
+import { sendData } from '../../redux/dataSlice'
+import { useAppDispatch } from '../../redux/store'
 
 interface ICreate {
   active: number
@@ -29,12 +27,12 @@ interface ICreate {
   form: ReturnType<typeof useForm<FormData>>
 }
 
-export const Create: React.FC<ICreate> = ({ active, setActive, form }) => {
+export const Create: FC<ICreate> = ({ active, setActive, form }) => {
   const [showModal, setShowModal] = useState<boolean>(false)
   const [errorModal, setErrorModal] = useState<boolean>(false)
 
   const dispatch = useAppDispatch()
-  const { loading, error } = useSelector((state: any) => state.data)
+  const { loading } = useSelector((state: any) => state.data)
 
   const nextStep = () =>
     setActive((current: number) => {
@@ -181,8 +179,8 @@ export const Create: React.FC<ICreate> = ({ active, setActive, form }) => {
             )}
           </div>
         </Group>
-        <Modal open={showModal} onClose={sendedData} />
-        <ModalError open={errorModal} onClose={sendDataApi} />
+        {showModal && <Modal open={showModal} onClose={sendedData} />}
+        {errorModal && <ModalError open={errorModal} onClose={sendDataApi} />}
       </div>
     </MantineProvider>
   )

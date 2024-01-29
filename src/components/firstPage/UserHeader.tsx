@@ -1,19 +1,17 @@
-import { MantineProvider, TextInput } from '@mantine/core'
+import { Button, MantineProvider, Text, TextInput } from '@mantine/core'
 import { useForm } from '@mantine/form'
 import { FC } from 'react'
 import { FaUserCircle } from 'react-icons/fa'
 import { FaFolder } from 'react-icons/fa'
 import InputMask from 'react-input-mask'
-import { FormData } from '../types/data'
+import { FormData } from '../../types/data'
 import { Link } from 'react-router-dom'
-
 
 // const isValidPhoneNumber = (phoneNumber:string) => /^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/.test(phoneNumber);
 
 interface IUserHeader {
   form: ReturnType<typeof useForm<FormData>>
 }
-
 
 export const UserHeader: FC<IUserHeader> = ({ form }) => {
   return (
@@ -41,9 +39,9 @@ export const UserHeader: FC<IUserHeader> = ({ form }) => {
         </div>
 
         <div>
-          <p className='nameOfInput'>Email</p>
+          <Text className='nameOfInput'>Email</Text>
           <TextInput className='inputs' placeholder='Email' {...form.getInputProps('email')} />
-          <p className='nameOfInput'>Telephone number</p>
+          <Text className='nameOfInput'>Telephone number</Text>
           <InputMask
             className='inputs'
             mask='+7 (999) 999-99-99'
@@ -52,14 +50,9 @@ export const UserHeader: FC<IUserHeader> = ({ form }) => {
           />
         </div>
 
-
         <Link to='/create'>
-    <button className='firstBtn'>Начать</button>
-  </Link>
-
-
-
-
+          <Button className='firstBtn'>Начать</Button>
+        </Link>
       </div>
     </MantineProvider>
   )
