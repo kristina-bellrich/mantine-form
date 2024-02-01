@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import { FC, useState } from 'react'
 import './App.css'
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
-import { UserHeader } from './UserHeader'
-import { Create } from './Create'
-import { FormData } from '../types/data'
+import { UserHeader } from './firstPage/UserHeader'
+import { Create } from './form/Form'
+import { FormData } from './types/types'
 import { useForm } from '@mantine/form'
-import { Button, MantineProvider } from '@mantine/core'
+import { ActivStep } from './constans/EnumActiveStep'
+import { useSelector } from 'react-redux'
+import { RootState } from 'components/redux/store'
 
 const initialValues: FormData = {
   phone: '',
@@ -20,20 +22,23 @@ const initialValues: FormData = {
   about: '',
 }
 
-const App: React.FC = () => {
-  const [active, setActive] = useState<number>(0)
+export type UseFormType = ReturnType<typeof useForm<FormData>>
+
+const App: FC = () => {
+  const active = useSelector((state: RootState) => state.data.active)
 
   const form = useForm<FormData>({
     initialValues,
     validate: (values) => {
-      console.log(values.phone)
       if (active > 0) {
         return {
           email: /^\S+@\S+$/.test(values.email) ? null : 'Invalid email',
-          phone: /^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/.test(values.phone) ? null : 'Invalid phone number',
+          phone: /^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/.test(values.phone)
+            ? null
+            : 'Invalid phone number',
         }
       }
-      if (active === 1) {
+      if (active === ActivStep.StepOne) {
         return {
           nickname:
             values.nickname.trim().length > 30
@@ -49,7 +54,7 @@ const App: React.FC = () => {
               : null,
         }
       }
-      if (active === 3) {
+      if (active === ActivStep.StepTree) {
         return {
           about:
             values.about.trim().length > 200 ? 'String must include maximum 200 characters' : null,
@@ -60,36 +65,19 @@ const App: React.FC = () => {
   })
 
   return (
-    <div>
-      <Router>
-        <Link to='/'></Link>
-        <Link to='/create'>
-
-          <MantineProvider>
+    <Router>
+      <Routes>
+        <Route
+          path='/'
+          element={
             <div className='formContainer'>
-              <Button id={active > 0 ? 'displayNone' : 'firstBtn'}>Начать</Button>
+              <UserHeader form={form} />
             </div>
-          </MantineProvider>
-
-
-
-        </Link>
-        <Routes>
-          <Route
-            path='/'
-            element={
-              <div className='formContainer'>
-                <UserHeader form={form} />
-              </div>
-            }
-          ></Route>
-          <Route
-            path='/create'
-            element={<Create active={active} setActive={setActive} form={form} />}
-          ></Route>
-        </Routes>
-      </Router>
-    </div>
+          }
+        ></Route>
+        <Route path='/create' element={<Create form={form} />} />
+      </Routes>
+    </Router>
   )
 }
 

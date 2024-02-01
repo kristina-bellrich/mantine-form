@@ -33,12 +33,21 @@
     "test": "next start",
     "eject": "react-scripts eject",
     "lint": "next lint",
-    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
+    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
+    "prepare": "husky",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,json,css,scss,html,md}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
+      "react-app/jest",
+      "prettier"
     ]
   },
   "browserslist": {
@@ -55,7 +64,13 @@
   },
   "devDependencies": {
     "@types/react-input-mask": "^3.0.5",
+    "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
-    "prettier": "^3.2.4"
+    "husky": "^9.0.7",
+    "lint-staged": "^15.2.1",
+    "prettier": "3.2.4"
+  },
+  "script": {
+    "prepare": "husky install"
   }
 }

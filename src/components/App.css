@@ -16,8 +16,9 @@
 }
 .nameOfInput {
   font-weight: 500;
+  margin-top: 60px;
 }
-#btnNext {
+.btnNext {
   background-color: #5558fa;
 }
 .btns {
@@ -44,12 +45,17 @@
   height: 100%;
   background: #00000099;
 }
-
+.advantage{
+  display: flex;
+  align-items: center;
+}
 .modal-main {
   position: fixed;
   background: white;
+  border: #999aeb85 solid 2px;
   width: 330px;
   height: auto;
+  padding: 15px 10px;
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -83,10 +89,8 @@
 .userRight {
   margin-left: 20px;
 }
-#firstBtn {
-  position: absolute;
-  margin-top: 400px;
-  background-color: #5558fa;
+.firstBtn {
+  margin-top: 80px;
 }
 #displayNone {
   display: none;
