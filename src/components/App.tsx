@@ -1,13 +1,16 @@
-import { FC, useState } from 'react'
-import './App.css'
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
-import { UserHeader } from './firstPage/UserHeader'
-import { Create } from './form/Form'
-import { FormData } from './types/types'
-import { useForm } from '@mantine/form'
-import { ActivStep } from './constans/EnumActiveStep'
-import { useSelector } from 'react-redux'
-import { RootState } from 'components/redux/store'
+import { FC } from 'react';
+
+import { useForm } from '@mantine/form';
+import { useSelector } from 'react-redux';
+import './App.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
+import { ActivStep } from './constans/EnumActiveStep';
+import { UserHeader } from './firstPage/UserHeader';
+import { Create } from './form/Form';
+import { FormData } from './types/types';
+
+import { RootState } from 'components/redux/store';
 
 const initialValues: FormData = {
   phone: '',
@@ -20,12 +23,12 @@ const initialValues: FormData = {
   radio: '',
   checkbox: [],
   about: '',
-}
+};
 
-export type UseFormType = ReturnType<typeof useForm<FormData>>
+export type UseFormType = ReturnType<typeof useForm<FormData>>;
 
 const App: FC = () => {
-  const active = useSelector((state: RootState) => state.data.active)
+  const active = useSelector((state: RootState) => state.data.active);
 
   const form = useForm<FormData>({
     initialValues,
@@ -36,7 +39,7 @@ const App: FC = () => {
           phone: /^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/.test(values.phone)
             ? null
             : 'Invalid phone number',
-        }
+        };
       }
       if (active === ActivStep.StepOne) {
         return {
@@ -52,33 +55,36 @@ const App: FC = () => {
             values.name.length > 50 || /^[A-Zz-z]+$/.test(values.surname)
               ? 'Surname must include maximum 50 characters  und only letters'
               : null,
-        }
+        };
       }
       if (active === ActivStep.StepTree) {
         return {
           about:
-            values.about.trim().length > 200 ? 'String must include maximum 200 characters' : null,
-        }
+            values.about.trim().length > 200
+              ? 'String must include maximum 200 characters'
+              : null,
+        };
       }
-      return {}
+      
+      return {};
     },
-  })
+  });
 
   return (
     <Router>
       <Routes>
         <Route
-          path='/'
+          path="/"
           element={
-            <div className='formContainer'>
+            <div className="formContainer">
               <UserHeader form={form} />
             </div>
           }
         ></Route>
-        <Route path='/create' element={<Create form={form} />} />
+        <Route path="/create" element={<Create form={form} />} />
       </Routes>
     </Router>
-  )
-}
+  );
+};
 
-export { App }
+export { App };

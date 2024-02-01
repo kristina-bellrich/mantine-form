@@ -1,5 +1,5 @@
-import { RootState } from './store'
+import { RootState } from './store';
 
-export const selectShowModal = (state: RootState) => state.modal.showModal
-export const selectErrorModal = (state: RootState) => state.modal.errorModal
-export const selectActive = (state: RootState) => state.data.active
+export const selectShowModal = (state: RootState): boolean => state.modal.showModal;
+export const selectErrorModal = (state: RootState): boolean => state.modal.errorModal;
+export const selectActive = (state: RootState): number => state.data.active;

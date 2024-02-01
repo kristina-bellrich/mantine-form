@@ -1,4 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+
 import { sendData } from 'components/api/Api'
 
 const initialState = { loading: false, error: null, active: 0 }
@@ -22,7 +23,7 @@ const dataSlice = createSlice({
         state.loading = false
         state.error = null
       })
-      .addCase(sendData.rejected, (state, action) => {
+      .addCase(sendData.rejected, (state) => {
         state.loading = false
       })
   },
