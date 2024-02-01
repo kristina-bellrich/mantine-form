@@ -32,24 +32,16 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint --ext \".ts,.tsx\" \"src/**/*.{ts,tsx,*.ts,*tsx}\"",
-    "lint:fix": "eslint --fix --ext \".ts,.tsx\" \"src/**/*.{ts,tsx,*.ts,*tsx}\"",
-    "prettier:check": "prettier --check --debug-check \"src/**/*.{ts,tsx,*.ts,*tsx}\"",
-    "prettier:format": "prettier --write \"src/**/*.{ts,tsx,*.ts,*tsx}\""
+    "lint": "eslint --ext \".ts,.tsx\" \"src//*.{ts,tsx,*.ts,*tsx}\"",
+    "lint:fix": "eslint --fix --ext \".ts,.tsx\" \"src//*.{ts,tsx,*.ts,*tsx}\"",
+    "prettier:check": "prettier --check --debug-check \"src//*.{ts,tsx,*.ts,*tsx}\"",
+    "prettier:format": "prettier --write \"src//*.{ts,tsx,*.ts,*tsx}\"",
+"prepare": "husky install"
   },
-  "lint-staged": {
-    "*.{js,json,css,scss,html,md}": [
-      "prettier --write",
-      "git add"
-    ]
+"eslintConfig": {
+    "extends": "react-app"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest",
-      "prettier"
-    ]
-  },
+
   "browserslist": {
     "production": [
       ">0.2%",
@@ -69,8 +61,5 @@
     "husky": "^9.0.7",
     "lint-staged": "^15.2.1",
     "prettier": "3.2.4"
-  },
-  "script": {
-    "prepare": "husky install"
   }
 }
