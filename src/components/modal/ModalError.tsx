@@ -3,7 +3,7 @@ import { FC } from 'react'
 import { RiCloseCircleFill } from 'react-icons/ri'
 
 interface ModalProps {
-  open: boolean
+
   onClose: () => void
 }
 

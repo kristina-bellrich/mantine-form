@@ -18,7 +18,7 @@
   font-weight: 500;
   margin-top: 60px;
 }
-#btnNext {
+.btnNext {
   background-color: #5558fa;
 }
 .btns {
@@ -45,7 +45,10 @@
   height: 100%;
   background: #00000099;
 }
-
+.advantage{
+  display: flex;
+  align-items: center;
+}
 .modal-main {
   position: fixed;
   background: white;
@@ -88,11 +91,6 @@
 }
 .firstBtn {
   margin-top: 80px;
-  color: white;
-  border-radius: 5px;
-  border: none;
-  background-color: #5558fa;
-  padding: 6px 10px;
 }
 #displayNone {
   display: none;

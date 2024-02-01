@@ -3,12 +3,11 @@ import { FC } from 'react'
 import { FaCircleCheck } from 'react-icons/fa6'
 import { Link } from 'react-router-dom'
 
-interface ModalProps {
-  open: boolean
-  onClose: () => void
-}
 
-export default function Modal(props: ModalProps): ReturnType<FC> {
+
+export const Modal:FC = () =>{
+
+
   return (
     <div className='modal-main'>
       <div className='modal-body'>
@@ -20,7 +19,7 @@ export default function Modal(props: ModalProps): ReturnType<FC> {
 
       <div className='btn-container'>
         <Link to='/'>
-          <Button type='button' className='btn' onClick={props.onClose}>
+          <Button type='button' className='btn'>
             На главную
           </Button>
         </Link>

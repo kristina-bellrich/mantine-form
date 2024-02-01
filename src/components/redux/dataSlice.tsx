@@ -1,23 +1,16 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import axios from 'axios'
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import { sendData } from 'components/api/Api'
 
-const initialState = { loading: false, error: null }
-
-export const sendData = createAsyncThunk('data/sendData', async (data: any) => {
-  try {
-    await axios.post('https://api.sbercloud.ru/content/v1/bootcamp/frontend', data)
-    return true
-  } catch (error) {
-    console.error('Error sending data:', error)
-    throw error
-  }
-})
+const initialState = { loading: false, error: null, active: 0 }
 
 const dataSlice = createSlice({
   name: 'data',
   initialState,
   reducers: {
     resetUsers: () => initialState,
+    setActive: (state, action: PayloadAction<number>) => {
+      state.active = action.payload
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -35,4 +28,5 @@ const dataSlice = createSlice({
   },
 })
 
-export default dataSlice.reducer
+export const dataSliceReducer = dataSlice.reducer
+export const dataSliceActions = dataSlice.actions
