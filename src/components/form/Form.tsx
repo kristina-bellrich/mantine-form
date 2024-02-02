@@ -8,6 +8,7 @@ import {
   Radio,
   Select,
   Stepper,
+  Text,
   Textarea,
   TextInput,
 } from '@mantine/core';
@@ -26,6 +27,7 @@ import { sendData } from 'components/api/Api';
 import { UseFormType } from 'components/App';
 import { ActivStep } from 'components/constans/EnumActiveStep';
 import { Modal } from 'components/modal/Modal';
+
 interface ICreate {
   form: UseFormType;
 }
@@ -41,7 +43,6 @@ export const Create: FC<ICreate> = ({ form }) => {
     await dispatch(sendData(form.values));
   };
 
-  
   return (
     <div className="formContainer">
       <Stepper
@@ -91,11 +92,10 @@ export const Create: FC<ICreate> = ({ form }) => {
         </Stepper.Step>
 
         <Stepper.Step label="2">
-          <label>Advantage</label>
+          <Text>Advantage</Text>
           {form.values.advantages.map((advantage, index) => (
             <Group key={index} className="advantage">
               <TextInput
-                key={index}
                 mt="md"
                 placeholder="Placeholder"
                 {...form.getInputProps(`advantages.${index}`)}

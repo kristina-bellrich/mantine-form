@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import { useForm } from '@mantine/form';
 import { useSelector } from 'react-redux';
-import './App.css';
+import './styles/App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import { ActivStep } from './constans/EnumActiveStep';
@@ -65,7 +65,7 @@ const App: FC = () => {
               : null,
         };
       }
-      
+
       return {};
     },
   });
@@ -80,7 +80,7 @@ const App: FC = () => {
               <UserHeader form={form} />
             </div>
           }
-        ></Route>
+        />
         <Route path="/create" element={<Create form={form} />} />
       </Routes>
     </Router>

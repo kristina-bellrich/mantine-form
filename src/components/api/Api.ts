@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-import { FormData } from '../types/types.js';
+import { FormData } from '../types/types';
 
 import { setErrorModal, setShowModal } from 'components/redux/modalSlice';
 
@@ -17,7 +17,6 @@ export const sendData = createAsyncThunk(
       await apiInstance.post('', data);
     } catch (error) {
       dispatch(setErrorModal(true));
-      console.error('Error sending data:', error);
       throw error;
     }
   },
